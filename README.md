@@ -1,13 +1,23 @@
 Questions to take care of?
 ==========================
-New implementation - Candy's machine
+Check setup directions - RJ's machine
 
+Technologies Used
+=================
+* Java 1.8
+* Spring Boot 1.3.5
+* Maven 3.3.3
+* JUnit 4
+* JMockit 1.24
+* MongoDB 3.3
+* Docker 1.12.0-rc2-beta17
+* Eclipse Neon
 
 Setup
 =====
 Install/Start docker  
 In Terminal Window 1  
-`$ Download myRetail from github - ???`  
+`$ Download myRetail from github` - depends on your system  
 `$ cd <workspace>/Target/myRetail`  
 `$ mvn Install`  
 `$ docker build -t myretail .`  
@@ -22,6 +32,10 @@ In Terminal Window 2
 `> use myRetail`  
 `> db.price.find()`  
 
+JUnit Tests
+===========
+Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available.  Perform the Setup steps to have a running instance of MongoDB in Docker.  
+On a larger project, an embeded MongoDB instance would be used.
 
 Demonstration
 =============

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.target.myretail.model.Price;
 import com.target.myretail.model.Product;
 import com.target.myretail.objects.ProductResponse;
 import com.target.myretail.repositories.PriceRepository;
@@ -51,4 +52,8 @@ public class MyRetailService {
 		log.info(response.toString());
         return response;
     }	
+    
+    public void savePrice(Price newPrice) {
+        priceRepository.save(newPrice);
+    }
 }

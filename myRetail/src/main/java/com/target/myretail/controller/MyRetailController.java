@@ -1,7 +1,5 @@
 package com.target.myretail.controller;
 
-import javax.annotation.Resource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.target.myretail.model.Price;
 import com.target.myretail.model.Product;
-import com.target.myretail.repositories.PriceRepository;
 import com.target.myretail.service.MyRetailService;
 
 @RestController
@@ -21,9 +18,6 @@ import com.target.myretail.service.MyRetailService;
 public class MyRetailController {
 	
 	private static final Logger log = LoggerFactory.getLogger(MyRetailController.class);
-	
-	@Resource
-	PriceRepository priceRepository;
 	
 	@Autowired
 	MyRetailService myRetailService;
@@ -39,7 +33,11 @@ public class MyRetailController {
     public void postProduct(@PathVariable Integer id, @RequestBody Price newPrice) {
         log.info("MyRetailController.postProduct(" + id + "); newPrice = " + newPrice);
         
-        // JRT / RJ should this go into the service too? Yes, move it
-        priceRepository.save(newPrice);
+        if (id.equals(newPrice.getId())) {
+            myRetailService.savePrice(newPrice);
+        } else {
+            log.error("A price update request for id " + id + " attempted to update the price for id " + newPrice.getId());
+            throw new RuntimeException("A price update request for id " + id + " attempted to update the price for id " + newPrice.getId());
+        }
     }   
 }
