@@ -33,7 +33,7 @@ public class MyRetailService {
 		return product;
 	}
 
-    protected Product buildProduct(Integer id, ProductResponse productResponse) {
+    private Product buildProduct(Integer id, ProductResponse productResponse) {
 		Product product = new Product();
 		product.setId(id);
 		try {
@@ -45,7 +45,7 @@ public class MyRetailService {
         return product;
     }
 
-    protected ProductResponse getProductDescription(Integer id) {
+    private ProductResponse getProductDescription(Integer id) {
         RestTemplate restTemplate = new RestTemplate();
 		String url = String.format(productURL, id);
 		ProductResponse response = restTemplate.getForObject(url, ProductResponse.class);

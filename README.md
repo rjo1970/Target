@@ -19,7 +19,7 @@ Install/Start docker
 In Terminal Window 1  
 `$ Download myRetail from github` - depends on your system  
 `$ cd <workspace>/Target/myRetail`  
-`$ mvn Install`  
+`$ mvn install -Dmaven.test.skip=true`  
 `$ docker build -t myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
@@ -34,8 +34,14 @@ In Terminal Window 2
 
 JUnit Tests
 ===========
-Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available.  Perform the Setup steps to have a running instance of MongoDB in Docker.  
-On a larger project, an embeded MongoDB instance would be used.
+Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available. On a larger project, an embeded MongoDB instance would be used. 
+
+In Terminal Window 1  
+`$ docker run -it -p 27017:27017 mongo --storageEngine wiredTiger`  
+
+In Terminal Window 2  
+`$ mvn clean test`  
+ 
 
 Demonstration
 =============
