@@ -4,8 +4,7 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -113,6 +112,7 @@ public class MyRetailControllerTest {
                 .andExpect(jsonPath("$").value(not(hasKey("current_price"))))
                 ;
     }
+    
     @Test
     public void testPostProduct() throws Exception {
         Integer productId = 13860428;
@@ -126,6 +126,27 @@ public class MyRetailControllerTest {
         Price afterPrice = priceRepository.findOne(productId);
         assertNotNull(afterPrice);
         assertEquals(99.99, afterPrice.getValue(), 2);
+    }
+    
+    @Test
+    public void testPostProduct_MismatchPriceId() throws Exception {
+        Integer productId = 13860428;
+
+        Price beforePrice = priceRepository.findOne(productId);
+
+        try {
+        Price newPrice = new Price(99999999, 99.99, "USD");
+        mockMvc.perform(post("/myRetail/products/" + productId)
+                        .content(json(newPrice))
+                        .contentType(contentType))
+                        .andExpect(status().is5xxServerError());
+        } catch (Exception e) {
+            assertTrue(e.getCause().getMessage().contains("A price update"));
+        }
+        
+        Price afterPrice = priceRepository.findOne(productId);
+        assertNotNull(afterPrice);
+        assertEquals(beforePrice.getValue(), afterPrice.getValue(), 2);
     }
     
     @SuppressWarnings("unchecked")
