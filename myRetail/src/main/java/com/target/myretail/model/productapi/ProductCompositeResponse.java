@@ -1,4 +1,4 @@
-package com.target.myretail.objects;
+package com.target.myretail.model.productapi;
 
 import java.util.List;
 

@@ -31,7 +31,7 @@ public class MyRetailApplication {
                 priceRepository.save(new Price(15117729,  10.99, "USD"));
                 priceRepository.save(new Price(16483589,  22.09, "USD"));
                 priceRepository.save(new Price(16696652, 125.00, "USD"));
-                priceRepository.save(new Price(16752456,1000.00, "CAD"));
+//                priceRepository.save(new Price(16752456, 1000.00, "CAD"));
                 priceRepository.save(new Price(15643793,   0.54, "USD"));
             };
         } else {

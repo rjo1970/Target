@@ -11,6 +11,7 @@ Technologies Used
 * JMockit 1.24
 * MongoDB 3.3
 * Docker 1.12.0-rc2-beta17
+* Docker-Compose 1.8.0-rc1
 * Eclipse Neon
 
 Setup
@@ -67,6 +68,7 @@ Demonstrate POST request
 ------------------------
 URL: http://localhost:8080/myRetail/products/13860428  
 Select request type: POST  
+Select application type: application/json
 Set raw payload to:  
 `{  
 	"id": 13860428,  
@@ -88,7 +90,18 @@ JSON Response returned
 	"id": 99999999  
 }`  
 
+Demonstrate GET Request on product with no pricing
+--------------------------------------------------
+URL: http://localhost:8080/myRetail/products/16752456  
+Select request type: GET  
+Click button: SEND  
+JSON Response returned  
+`{  
+	"id": 16752456
+	"name": "Lego&reg; Super Heroes The Tumbler 76023"
+}`  
+
 List of known product ids
 -------------------------
-13860428, 15117729, 16483589, 16696652, 16752456, 15643793  
+13860428, 15117729, 16483589, 16696652, 16752456 (no pricing info), 15643793  
 

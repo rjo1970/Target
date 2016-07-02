@@ -10,7 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.target.myretail.model.Price;
 import com.target.myretail.model.Product;
-import com.target.myretail.objects.ProductResponse;
+import com.target.myretail.model.productapi.InformationUnavailableException;
+import com.target.myretail.model.productapi.ProductResponse;
 import com.target.myretail.repositories.PriceRepository;
 
 @Service
@@ -37,11 +38,11 @@ public class MyRetailService {
 		Product product = new Product();
 		product.setId(id);
 		try {
-		    product.setName(productResponse.getProductCompositeResponse().getItems().get(0).getOnlineDescription().getValue()); // from API
+		    product.setName(productResponse.getItemOnlineDescription());
 	        product.setCurrentPrice(priceRepository.findOne(id));
-		} catch (NullPointerException e) {
-		    product.setName("");
-		}
+		} catch (InformationUnavailableException e) {
+		    log.warn("ProductID: " + id + " => " + e.getMessage());
+        }
         return product;
     }
 
