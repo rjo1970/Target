@@ -29,15 +29,14 @@ public class MyRetailApplicationTests {
         System.setProperty("run.mode", "demo");
         MongoClient mongo = new MongoClient("localhost", 27017);
         db = mongo.getDB("myRetail");
-        db.dropDatabase();
     }
     
 	@Test
-	public void testMongoSetup_DemoMode() {
+	public void testMongoSetup() {
 
         myRetailApplication.init();
 	    
         DBCollection table = db.getCollection("price");
-        assertEquals(6, table.count());
+        assertEquals(5, table.count());
 	}
 }
