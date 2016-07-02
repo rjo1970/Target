@@ -2,10 +2,11 @@ mongodb:
   image: mongo
   ports:
     - 27017:27017
-
+  
 myretail:
   image: myretail
   links: 
     - mongodb
   ports:
     - 8080:8080
+  restart: unless-stopped
