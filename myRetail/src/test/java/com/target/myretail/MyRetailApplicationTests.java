@@ -2,7 +2,8 @@ package com.target.myretail;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
+import java.net.UnknownHostException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,10 @@ public class MyRetailApplicationTests {
     
     private static DB db;
     
-    @BeforeClass
-    public static void beforeClass() throws Exception {
-        System.setProperty("run.mode", "demo");
+	@Test
+	public void testMongoSetup() throws UnknownHostException {
         MongoClient mongo = new MongoClient("localhost", 27017);
         db = mongo.getDB("myRetail");
-    }
-    
-	@Test
-	public void testMongoSetup() {
 
         myRetailApplication.init();
 	    

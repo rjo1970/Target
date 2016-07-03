@@ -20,7 +20,6 @@ import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,11 +72,6 @@ public class MyRetailControllerTest {
 
     private Price origPrice;
     
-    @BeforeClass
-    public static void beforeClass() {
-        System.setProperty("run.mode", "demo");
-    }
-    
     @Before
     public void setUp() throws Exception {
         mockMvc = webAppContextSetup(webApplicationContext).build();
@@ -110,13 +104,25 @@ public class MyRetailControllerTest {
     }
     
     @Test
-    public void testGetProduct_DoesntExist() throws Exception {
+    public void testGetProduct_ProductFromAPIDoesntExist() throws Exception {
         mockMvc.perform(get("/myRetail/products/99999999"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(jsonPath("$.id", is(99999999)))
                 .andExpect(jsonPath("$").value(not(hasKey("name"))))
+                .andExpect(jsonPath("$").value(not(hasKey("current_price"))))
+                ;
+    }
+    
+    @Test
+    public void testGetProduct_PriceDoesntExist() throws Exception {
+        mockMvc.perform(get("/myRetail/products/16752456"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(jsonPath("$.id", is(16752456)))
+                .andExpect(jsonPath("$.name", is("Lego&reg; Super Heroes The Tumbler 76023")))
                 .andExpect(jsonPath("$").value(not(hasKey("current_price"))))
                 ;
     }

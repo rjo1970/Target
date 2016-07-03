@@ -8,11 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.target.myretail.model.Price;
@@ -50,11 +49,6 @@ public class MyRetailServiceTest {
     @Injectable 
     PriceRepository mockPriceRepository;
     
-    @BeforeClass
-    public static void beforeClass() {
-        System.setProperty("run.mode", "demo");
-    }
-
     @Before
     public void setUp() {
         MyRetailService.log = mockLogger; // Should have been auto injected
