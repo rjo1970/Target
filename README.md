@@ -100,14 +100,14 @@ Set raw payload to:
 Click button: SEND  
 Status: 500 Internal Server Error  
 JSON response returned  
-'{
+`{
 	"timestamp": 1467555025459
 	"status": 500
 	"error": "Internal Server Error"
 	"exception": "java.lang.RuntimeException"
 	"message": "A price update request for id 99999999 attempted to update the price for id 13860428"
 	"path": "/myRetail/products/99999999"
-}'
+}`  
 
 Confirm no price saved on 99999999 by repeating GET request for item 99999999 and checking price  
 Confirm no update on 13860428 by repeating GET request for item 13860428 and checking price (29.99)
