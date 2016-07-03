@@ -36,8 +36,8 @@ public class MyRetailServiceTest {
     @Tested
     MyRetailService myRetailService;
 
-    @Mocked
-    static LoggerFactory mockLoggerFactory;
+//    @Mocked
+//    static LoggerFactory mockLoggerFactory; // Should have been auto injected for Logger
     @Mocked 
     Logger mockLogger;
 
