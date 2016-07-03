@@ -1,7 +1,6 @@
 package com.target.myretail.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +16,7 @@ import com.target.myretail.service.MyRetailService;
 @RequestMapping("/myRetail")
 public class MyRetailController {
 	
-	static Logger log = LoggerFactory.getLogger(MyRetailController.class);
+    static Logger log = Logger.getLogger(MyRetailController.class);
 	
 	@Autowired
 	MyRetailService myRetailService;
