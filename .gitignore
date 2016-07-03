@@ -17,6 +17,9 @@ hs_err_pid*
 .gradle/
 build/
 
+# Test Files
+coverage-report/
+
 # Temporary files
 *~
 RemoteSystemsTempFiles/

@@ -34,9 +34,8 @@ public class MyRetailApplication {
 //                priceRepository.save(new Price(16752456, 1000.00, "CAD"));
                 priceRepository.save(new Price(15643793,   0.54, "USD"));
             };
-        } else {
-            return null;
         }
+        return null;
     }
     
 	public static void main(String[] args) {

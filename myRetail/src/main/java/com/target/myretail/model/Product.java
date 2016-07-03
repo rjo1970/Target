@@ -17,12 +17,6 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer id, String name, Price currentPrice) {
-        this.id = id;
-        this.name = name;
-        this.currentPrice = currentPrice;
-    }
-
     public Integer getId() {
         return id;
     }

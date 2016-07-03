@@ -34,6 +34,7 @@ dependencies {
     }
     testCompile group: 'com.jayway.jsonpath', name: 'json-path', version:'2.0.0'
     testCompile group: 'org.jmockit', name: 'jmockit', version:'1.24'
+    testCompile group: 'org.jmockit', name: 'jmockit-coverage', version: '1.23'
 }
 
 task wrapper(type: Wrapper) {
