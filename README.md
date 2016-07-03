@@ -2,7 +2,7 @@ Technologies Used
 =================
 * Java 1.8
 * Spring Boot 1.3.5
-* Maven 3.3.3
+* Gradle 2.14
 * JUnit 4
 * JMockit 1.24
 * MongoDB 3.3
@@ -16,7 +16,7 @@ Install/Start docker
 In Terminal Window 1  
 `$ Download myRetail from github` - depends on your system  
 `$ cd <workspace>/Target/myRetail`  
-`$ mvn install -Dmaven.test.skip=true`  
+`$ gradle clean build`  
 `$ docker build -t myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
@@ -37,7 +37,7 @@ In Terminal Window 1
 `$ docker run -it -p 27017:27017 mongo --storageEngine wiredTiger`  
 
 In Terminal Window 2  
-`$ mvn clean test`  
+`$ gradle clean check`  
  
 
 Demonstration
