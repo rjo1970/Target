@@ -17,6 +17,7 @@ In Terminal Window 1
 `$ Download myRetail from github` - depends on your system  
 `$ cd <workspace>/Target/myRetail`  
 `$ gradle clean build`  
+`$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE
 `$ docker build -t myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
