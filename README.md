@@ -135,6 +135,6 @@ Productionize Application
 * Secure the Mongo database.  i.e. Vault
 * API versioning using URL names: http://localhost:8080/myRetail/v1/products/13860428
 * Based on the volume and frequency of changing data, possibly add an expiring caching mechanism for data from the external product api.
-** Is there a cost per transaction to the external system?
+  * Is there a cost per transaction to the external system?
 * Addressing the situation if multiple items can come back on a single product Id
 * Performance of request/response
