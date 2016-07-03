@@ -24,11 +24,11 @@ In Terminal Window 1
 `$ docker build -t myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
-Note: Control-C will shut down the instances or use docker stop if running in background  
+Note: Control-C should shut down the instances or use docker stop if running in background  
 
 In Terminal Window 2  
 `$ docker ps` 	=> To confirm docker containers started  
-`$ docker exec -it myretail_mongodb_1 bash`  
+`$ docker exec -it myretail_mongodb_1 bash`
 `# mongo`  
 `> use myRetail`  
 `> db.price.find()`  

@@ -105,7 +105,7 @@ public class MyRetailServiceTest {
         
         new Verifications() {{
             mockPriceRepository.findOne(anyInt); times = 0;
-            mockLogger.info(productResponse.toString());            
+            mockLogger.info(productResponse.toString());
             mockLogger.warn("ProductID: 13860428 => Item Online Description is unavailable");            
         }};
     }
@@ -130,6 +130,7 @@ public class MyRetailServiceTest {
         
         new Verifications() {{
             mockLogger.info(productResponse.toString());            
+            mockLogger.warn("ProductID: 13860428 => Pricing is unavailable");            
         }};
     }
     

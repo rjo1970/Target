@@ -1,4 +1,4 @@
-package com.target.myretail.model.productapi;
+package com.target.myretail.exception;
 
 public class InformationUnavailableException extends Exception {
 

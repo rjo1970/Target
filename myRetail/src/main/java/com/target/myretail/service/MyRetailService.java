@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.target.myretail.exception.InformationUnavailableException;
 import com.target.myretail.model.Price;
 import com.target.myretail.model.Product;
-import com.target.myretail.model.productapi.InformationUnavailableException;
 import com.target.myretail.model.productapi.ProductResponse;
 import com.target.myretail.repositories.PriceRepository;
 
@@ -39,13 +39,21 @@ public class MyRetailService {
 		product.setId(id);
 		try {
 		    product.setName(productResponse.getItemOnlineDescription());
-	        product.setCurrentPrice(priceRepository.findOne(id));
+            product.setCurrentPrice(retrievePrice(id));
 		} catch (InformationUnavailableException e) {
 		    log.warn("ProductID: " + id + " => " + e.getMessage());
         }
         return product;
     }
 
+    private Price retrievePrice(Integer id) throws InformationUnavailableException {
+        Price price = priceRepository.findOne(id);
+        if (price == null) {
+            throw new InformationUnavailableException("Pricing is unavailable");
+        }
+        return price;
+    }
+    
     private ProductResponse getProductDescription(Integer id) {
         RestTemplate restTemplate = new RestTemplate();
 		String url = String.format(productURL, id);
