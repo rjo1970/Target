@@ -1,12 +1,8 @@
-Questions to take care of?
-==========================
-Check setup directions - RJ's machine
-
 Technologies Used
 =================
 * Java 1.8
 * Spring Boot 1.3.5
-* Maven 3.3.3
+* Gradle 2.14
 * JUnit 4
 * JMockit 1.24
 * MongoDB 3.3
@@ -20,7 +16,7 @@ Install/Start docker
 In Terminal Window 1  
 `$ Download myRetail from github` - depends on your system  
 `$ cd <workspace>/Target/myRetail`  
-`$ mvn install -Dmaven.test.skip=true`  
+`$ gradle clean build`  
 `$ docker build -t myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
@@ -41,7 +37,7 @@ In Terminal Window 1
 `$ docker run -it -p 27017:27017 mongo --storageEngine wiredTiger`  
 
 In Terminal Window 2  
-`$ mvn clean test`  
+`$ gradle clean check`  
  
 
 Demonstration
@@ -89,6 +85,32 @@ JSON Response returned
 `{  
 	"id": 99999999  
 }`  
+
+Demonstrate POST request on different product
+---------------------------------------------
+URL: http://localhost:8080/myRetail/products/99999999  
+Select request type: POST  
+Select application type: application/json
+Set raw payload to:  
+`{  
+	"id": 13860428,  
+	"value": "39.99",  
+	"currency_code": "USD"  
+}`  
+Click button: SEND  
+Status: 500 Internal Server Error  
+JSON response returned  
+`{
+	"timestamp": 1467555025459
+	"status": 500
+	"error": "Internal Server Error"
+	"exception": "java.lang.RuntimeException"
+	"message": "A price update request for id 99999999 attempted to update the price for id 13860428"
+	"path": "/myRetail/products/99999999"
+}`  
+
+Confirm no price saved on 99999999 by repeating GET request for item 99999999 and checking price  
+Confirm no update on 13860428 by repeating GET request for item 13860428 and checking price (29.99)
 
 Demonstrate GET Request on product with no pricing
 --------------------------------------------------
