@@ -17,7 +17,7 @@ import com.target.myretail.repositories.PriceRepository;
 @Service
 public class MyRetailService {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(MyRetailService.class);
+    static Logger log = LoggerFactory.getLogger(MyRetailService.class);
 
 	@Value("${product.description.url}")
 	private String productURL;
@@ -41,7 +41,7 @@ public class MyRetailService {
 		    product.setName(productResponse.getItemOnlineDescription());
 	        product.setCurrentPrice(priceRepository.findOne(id));
 		} catch (InformationUnavailableException e) {
-		    LOG.warn("ProductID: " + id + " => " + e.getMessage());
+		    log.warn("ProductID: " + id + " => " + e.getMessage());
         }
         return product;
     }
@@ -50,14 +50,10 @@ public class MyRetailService {
         RestTemplate restTemplate = new RestTemplate();
 		String url = String.format(productURL, id);
 		ProductResponse response = null;
-		try {
-		 response = restTemplate.getForObject(url, ProductResponse.class);		
-		System.out.println("***** response : " + response.toString());
-		LOG.info(response.toString());
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-        return response;
+	    response = restTemplate.getForObject(url, ProductResponse.class);		
+	    log.info(response.toString());
+
+	    return response;
     }	
     
     public void savePrice(Price newPrice) {

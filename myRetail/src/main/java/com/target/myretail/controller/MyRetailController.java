@@ -17,26 +17,26 @@ import com.target.myretail.service.MyRetailService;
 @RequestMapping("/myRetail")
 public class MyRetailController {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(MyRetailController.class);
+	static Logger log = LoggerFactory.getLogger(MyRetailController.class);
 	
 	@Autowired
 	MyRetailService myRetailService;
 	
 	@RequestMapping(value="/products/{id}", method = RequestMethod.GET)
 	public Product getProduct(@PathVariable Integer id) {
-		LOG.info("MyRetailController.getProduct(" + id + ")");
+		log.info("MyRetailController.getProduct(" + id + ")");
 		
 		return myRetailService.getProduct(id);		
 	}	
 
     @RequestMapping(value="/products/{id}", method = RequestMethod.POST)
     public void postProduct(@PathVariable Integer id, @RequestBody Price newPrice) {
-        LOG.info("MyRetailController.postProduct(" + id + "); newPrice = " + newPrice);
+        log.info("MyRetailController.postProduct(" + id + "); newPrice = " + newPrice);
         
         if (id.equals(newPrice.getId())) {
             myRetailService.savePrice(newPrice);
         } else {
-            LOG.error("A price update request for id " + id + " attempted to update the price for id " + newPrice.getId());
+            log.error("A price update request for id " + id + " attempted to update the price for id " + newPrice.getId());
             throw new RuntimeException("A price update request for id " + id + " attempted to update the price for id " + newPrice.getId());
         }
     }   

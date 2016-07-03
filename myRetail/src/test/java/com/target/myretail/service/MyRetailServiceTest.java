@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Before;
@@ -41,11 +40,13 @@ public class MyRetailServiceTest {
     static LoggerFactory mockLoggerFactory;
     @Mocked 
     Logger mockLogger;
+
     @Mocked 
     RestTemplate mockRestTemplate;
     
     @Injectable
     String productURL = "https//dummyURL";
+    
     @Injectable 
     PriceRepository mockPriceRepository;
     
@@ -56,7 +57,7 @@ public class MyRetailServiceTest {
 
     @Before
     public void setUp() {
-        myRetailService = new MyRetailService();
+        MyRetailService.log = mockLogger; // Should have been auto injected
     }
     
     @SuppressWarnings("unchecked")
@@ -72,7 +73,6 @@ public class MyRetailServiceTest {
         
         Product product = myRetailService.getProduct(13860428);
         
-        // JRT / RJ how to test the service? should we use JMockit? Yes
         assertNotNull(product);
         assertEquals(Integer.valueOf(13860428), product.getId());
         assertEquals("Hewy Lewis & The News Greatest Hits", product.getName());
@@ -83,7 +83,6 @@ public class MyRetailServiceTest {
         
         new Verifications() {{
             mockLogger.info(anyString); 
-            System.out.println("***** verifica : " + productResponse.toString());
         }};
     }
 
@@ -106,11 +105,7 @@ public class MyRetailServiceTest {
         
         new Verifications() {{
             mockPriceRepository.findOne(anyInt); times = 0;
-            List<String> messages = new LinkedList<>();
-            mockLogger.info(withCapture(messages));
-            System.out.println("***** " + messages);
-
-//            mockLogger.info(productResponse.toString());            
+            mockLogger.info(productResponse.toString());            
             mockLogger.warn("ProductID: 13860428 => Item Online Description is unavailable");            
         }};
     }
