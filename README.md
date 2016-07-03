@@ -127,3 +127,14 @@ List of known product ids
 -------------------------
 13860428, 15117729, 16483589, 16696652, 16752456 (no pricing info), 15643793  
 
+
+Productionize Application
+=========================
+* Front end security (depending on who end users will be and who can change prices)
+* Add mechanism to detect being spammed (time between requests, x requests per 1 minute per IP, etc)
+* Secure the Mongo database.  i.e. Vault
+* API versioning using URL names: http://localhost:8080/myRetail/v1/products/13860428
+* Based on the volume and frequency of changing data, possibly add an expiring caching mechanism for data from the external product api.
+** Is there a cost per transaction to the external system?
+* Addressing the situation if multiple items can come back on a single product Id
+* Performance of request/response
