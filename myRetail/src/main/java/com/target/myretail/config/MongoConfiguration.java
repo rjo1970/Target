@@ -1,7 +1,6 @@
 package com.target.myretail.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -16,7 +15,7 @@ import com.mongodb.MongoClient;
 @PropertySource("classpath:mongo.properties")
 public class MongoConfiguration extends AbstractMongoConfiguration {
 
-    private static final Logger log = LoggerFactory.getLogger(MongoConfiguration.class);
+    static Logger log = Logger.getLogger(MongoConfiguration.class);
 
     @Value("${mongo.host}")
     private String host;

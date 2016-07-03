@@ -2,8 +2,7 @@ package com.target.myretail.service;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +16,7 @@ import com.target.myretail.repositories.PriceRepository;
 @Service
 public class MyRetailService {
 	
-    static Logger log = LoggerFactory.getLogger(MyRetailService.class);
+    static Logger log = Logger.getLogger(MyRetailService.class);
 
 	@Value("${product.description.url}")
 	private String productURL;

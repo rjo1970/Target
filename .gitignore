@@ -13,6 +13,10 @@ hs_err_pid*
 .metadata/
 .recommenders/
 
+# Gradle Files
+.gradle/
+build/
+
 # Temporary files
 *~
 RemoteSystemsTempFiles/

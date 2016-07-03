@@ -7,12 +7,11 @@ import static org.junit.Assert.assertNull;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
 import com.target.myretail.model.Price;
@@ -36,8 +35,8 @@ public class MyRetailServiceTest {
     @Tested
     MyRetailService myRetailService;
 
-    @Mocked
-    static LoggerFactory mockLoggerFactory;
+//    @Mocked
+//    LogManager mockLogManager;
     @Mocked 
     Logger mockLogger;
 
@@ -82,7 +81,7 @@ public class MyRetailServiceTest {
         assertEquals("USD", product.getCurrentPrice().getCurrencyCode());
         
         new Verifications() {{
-            mockLogger.info(anyString); 
+            mockLogger.info(productResponse.toString()); 
         }};
     }
 
