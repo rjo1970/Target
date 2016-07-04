@@ -29,13 +29,14 @@ Optionally build locally:
 * `$ gradle clean build -x test` - tests wont work until Mongo docker is built  
 * `$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE  
 * `$ docker build -t jrtitko/myretail .`  
+
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
 Note: Control-C should shut down the instances or use docker stop if running in background  
 
 In Terminal Window 2  
 `$ docker ps` 	=> To confirm docker containers started  
-`$ docker exec -it myretail_mongodb_1 bash`  => myretail_mongodb_1 is named automatically so could potentially be different  
+`$ docker exec -it myretail_mongodb_1 bash`  => myretail_mongodb_1 is named automatically so could be different  
 `# mongo`  
 `> use myRetail`  
 `> db.price.find()`  => should be 5 records for demonstration purposes
@@ -47,9 +48,10 @@ Due to the nature of this project (small proof of concept), the JUnit tests are 
 
 In Terminal Window 1  
 If the Setup (above) has been done, use:  
-`$ docker start myretail_mongodb_1`  
+  `$ docker start myretail_mongodb_1`  => myretail_mongodb_1 is named automatically so could be different  
 Otherwise, use:  
-`$ docker run -it -p 27017:27017 mongo --storageEngine wiredTiger`  
+  `$ docker run -d -p 27017:27017 mongo --storageEngine wiredTiger`  
+  Note: Use docker stop to shut down the instance after the test  
 
 In Terminal Window 2  
 `$ cd <workspace>/Target/myRetail`  
@@ -71,7 +73,7 @@ JSON Response returned
 	"name": "The Big Lebowski [Blu-ray]"  
 	"current_price": {  
 		"id": 13860428  
-		"value": 29.99  
+		"value": 13.49  
 		"currency_code": "USD"  
 	}  
 }`  
