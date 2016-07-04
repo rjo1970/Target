@@ -19,7 +19,7 @@ In Terminal Window 1
 `$ cd <workspace>/Target/myRetail`  
 `$ gradle clean build -x test` - tests wont work until Mongo docker is built  
 `$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE  
-`$ docker build -t myretail .`  
+`$ docker build -t jrtitko/myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
 Note: Control-C should shut down the instances or use docker stop if running in background  

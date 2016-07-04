@@ -4,7 +4,7 @@ mongodb:
     - 27017:27017
   
 myretail:
-  image: myretail
+  image: jrtitko/myretail
   links: 
     - mongodb
   ports:
