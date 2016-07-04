@@ -10,14 +10,15 @@ Technologies Used
 * Docker-Compose 1.8.0-rc1
 * Eclipse Neon
 
+
 Setup
 =====
 Install/Start docker  
 In Terminal Window 1  
 `$ Download myRetail from github` - depends on your system  
 `$ cd <workspace>/Target/myRetail`  
-`$ gradle clean build`  
-`$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE
+`$ gradle clean build -x test` - tests wont work until Mongo docker is built  
+`$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE  
 `$ docker build -t myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
@@ -25,19 +26,21 @@ Note: Control-C should shut down the instances or use docker stop if running in 
 
 In Terminal Window 2  
 `$ docker ps` 	=> To confirm docker containers started  
-`$ docker exec -it myretail_mongodb_1 bash`
+`$ docker exec -it myretail_mongodb_1 bash`  
 `# mongo`  
 `> use myRetail`  
 `> db.price.find()`  
 
+
 JUnit Tests
 ===========
-Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available. On a larger project, an embeded MongoDB instance would be used. 
+Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available. On a larger project, an embeded MongoDB instance would be used.  
 
 In Terminal Window 1  
 `$ docker run -it -p 27017:27017 mongo --storageEngine wiredTiger`  
 
 In Terminal Window 2  
+`$ cd <workspace>/Target/myRetail`  
 `$ gradle clean check`  
  
 
@@ -65,7 +68,7 @@ Demonstrate POST request
 ------------------------
 URL: http://localhost:8080/myRetail/products/13860428  
 Select request type: POST  
-Select application type: application/json
+Select application type: application/json  
 Set raw payload to:  
 `{  
 	"id": 13860428,  
@@ -91,7 +94,7 @@ Demonstrate POST request on different product
 ---------------------------------------------
 URL: http://localhost:8080/myRetail/products/99999999  
 Select request type: POST  
-Select application type: application/json
+Select application type: application/json  
 Set raw payload to:  
 `{  
 	"id": 13860428,  
@@ -102,16 +105,16 @@ Click button: SEND
 Status: 500 Internal Server Error  
 JSON response returned  
 `{
-	"timestamp": 1467555025459
-	"status": 500
-	"error": "Internal Server Error"
-	"exception": "java.lang.RuntimeException"
-	"message": "A price update request for id 99999999 attempted to update the price for id 13860428"
-	"path": "/myRetail/products/99999999"
+	"timestamp": 1467555025459  
+	"status": 500  
+	"error": "Internal Server Error"  
+	"exception": "java.lang.RuntimeException"  
+	"message": "A price update request for id 99999999 attempted to update the price for id 13860428"  
+	"path": "/myRetail/products/99999999"  
 }`  
 
 Confirm no price saved on 99999999 by repeating GET request for item 99999999 and checking price  
-Confirm no update on 13860428 by repeating GET request for item 13860428 and checking price (29.99)
+Confirm no update on 13860428 by repeating GET request for item 13860428 and checking price (29.99)  
 
 Demonstrate GET Request on product with no pricing
 --------------------------------------------------
@@ -120,8 +123,8 @@ Select request type: GET
 Click button: SEND  
 JSON Response returned  
 `{  
-	"id": 16752456
-	"name": "Lego&reg; Super Heroes The Tumbler 76023"
+	"id": 16752456  
+	"name": "Lego&reg; Super Heroes The Tumbler 76023"  
 }`  
 
 List of known product ids
@@ -131,11 +134,11 @@ List of known product ids
 
 Productionize Application
 =========================
-* Front end security (depending on who end users will be and who can change prices)
-* Add mechanism to detect being spammed (time between requests, x requests per 1 minute per IP, etc)
-* Secure the Mongo database.  i.e. Vault
-* API versioning using URL names: http://localhost:8080/myRetail/v1/products/13860428
-* Based on the volume and frequency of changing data, possibly add an expiring caching mechanism for data from the external product api.
-  * Is there a cost per transaction to the external system?
-* Addressing the situation if multiple items can come back on a single product Id
-* Performance of request/response
+* Front end security (depending on who end users will be and who can change prices)  
+* Add mechanism to detect being spammed (time between requests, x requests per 1 minute per IP, etc)  
+* Secure the Mongo database.  i.e. Vault  
+* API versioning using URL names: http://localhost:8080/myRetail/v1/products/13860428  
+* Based on the volume and frequency of changing data, possibly add an expiring caching mechanism for data from the external product api.  
+  * Is there a cost per transaction to the external system?  
+* Addressing the situation if multiple items can come back on a single product Id  
+* Performance of request/response  
