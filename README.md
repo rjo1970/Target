@@ -1,35 +1,44 @@
+Target Technical Assessment - MyRetail RESTful service
+======================================================
+The goal for this exercise is to create an end-to-end Proof-of-Concept for a products API which will aggregate product data from multiple sources and return it as JSON to the caller.  
+
+
 Technologies Used
 =================
-* Java 1.8
-* Spring Boot 1.3.5
-* Gradle 2.14
-* JUnit 4
-* JMockit 1.24
-* MongoDB 3.3
-* Docker 1.12.0-rc2-beta17
-* Docker-Compose 1.8.0-rc1
-* Eclipse Neon
+* Java 1.8  
+* Spring Boot 1.3.5  
+* Gradle 2.14  
+* JUnit 4  
+* JMockit 1.24  
+* MongoDB 3.3  
+* Docker 1.12.0-rc2-beta17  
+* Docker-Compose 1.8.0-rc1  
+* Git 2.9.0  
+* Eclipse Neon  
 
 
 Setup
 =====
-Install/Start docker  
+Start docker  
+
 In Terminal Window 1  
-`$ Download myRetail from github` - depends on your system  
+`$ cd <workspace>`  
+`$ git clone https://github.com/jrtitko/Target.git`  
 `$ cd <workspace>/Target/myRetail`  
-`$ gradle clean build -x test` - tests wont work until Mongo docker is built  
-`$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE  
-`$ docker build -t jrtitko/myretail .`  
+Optionally build locally:  
+* `$ gradle clean build -x test` - tests wont work until Mongo docker is built  
+* `$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE  
+* `$ docker build -t jrtitko/myretail .`  
 `$ docker-compose up`  
 Note: This terminal window will display the logs. To run in background, use: docker-compose up -d  
 Note: Control-C should shut down the instances or use docker stop if running in background  
 
 In Terminal Window 2  
 `$ docker ps` 	=> To confirm docker containers started  
-`$ docker exec -it myretail_mongodb_1 bash`  
+`$ docker exec -it myretail_mongodb_1 bash`  => myretail_mongodb_1 is named automatically so could potentially be different  
 `# mongo`  
 `> use myRetail`  
-`> db.price.find()`  
+`> db.price.find()`  => should be 5 records for demonstration purposes
 
 
 JUnit Tests
@@ -37,6 +46,9 @@ JUnit Tests
 Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available. On a larger project, an embeded MongoDB instance would be used.  
 
 In Terminal Window 1  
+If the Setup (above) has been done, use:  
+`$ docker start myretail_mongodb_1`  
+Otherwise, use:  
 `$ docker run -it -p 27017:27017 mongo --storageEngine wiredTiger`  
 
 In Terminal Window 2  
