@@ -1,4 +1,4 @@
-Target Technical Assessment - MyRetail RESTful service
+Target Technical Assessment - MyRetail RESTful Service
 ======================================================
 The goal for this exercise is to create an end-to-end Proof-of-Concept for a products API which will aggregate product data from multiple sources and return it as JSON to the caller.  
 
@@ -44,7 +44,7 @@ In Terminal Window 2
 
 JUnit Tests
 ===========
-Due to the nature of this project (small proof of concept), the JUnit tests are actually integration tests which requires a MongoDB instance to be available. On a larger project, an embeded MongoDB instance would be used.  
+Due to the nature of this project (small proof of concept), some of the JUnit tests are actually integration tests which requires a MongoDB instance to be available.
 
 In Terminal Window 1  
 If the Setup (above) has been done, use:  
@@ -61,6 +61,9 @@ In Terminal Window 2
 Demonstration
 =============
 Use the Advanced Rest Client (ARC) in google to hit the RESTful service.  
+
+Make sure the docker images are running by using:  
+`$ docker-compose up`  
 
 Demonstrate GET request
 -----------------------
