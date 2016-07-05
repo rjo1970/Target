@@ -27,7 +27,7 @@ In Terminal Window 1
 `$ cd <workspace>/Target/myRetail`  
 Optionally build locally:  
 * `$ gradle clean build -x test` - tests wont work until Mongo docker is built  
-* `$ gradle eclipse` -- or -- `$ gradle idea` - to view the code in an IDE  
+* `$ gradle eclipse` -- or -- `$ gradle idea` - to build IDE specific files  
 * `$ docker build -t jrtitko/myretail .`  
 
 `$ docker-compose up`  
@@ -46,21 +46,20 @@ JUnit Tests
 ===========
 Due to the nature of this project (small proof of concept), some of the JUnit tests are actually integration tests which requires a MongoDB instance to be available.
 
-In Terminal Window 1  
+In A Terminal Window  
 If the Setup (above) has been done, use:  
   `$ docker start myretail_mongodb_1`  => myretail_mongodb_1 is named automatically so could be different  
 Otherwise, use:  
   `$ docker run -d -p 27017:27017 mongo --storageEngine wiredTiger`  
   Note: Use docker stop to shut down the instance after the test  
 
-In Terminal Window 2  
 `$ cd <workspace>/Target/myRetail`  
 `$ gradle clean check`  
  
 
 Demonstration
 =============
-Use the Advanced Rest Client (ARC) in google to hit the RESTful service.  
+Use the Advanced REST Client (ARC) in google to hit the RESTful service.  
 
 Make sure the docker images are running by using:  
 `$ docker-compose up`  
