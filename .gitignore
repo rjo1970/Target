@@ -15,6 +15,9 @@ hs_err_pid*
 .classpath
 .project
 
+# IntelliJ Files
+.idea/
+
 # Gradle Files
 .gradle/
 build/
