@@ -2,19 +2,19 @@ Target Technical Assessment - MyRetail RESTful Service
 ======================================================
 The goal for this exercise is to create an end-to-end Proof-of-Concept for a products API which will aggregate product data from multiple sources and return it as JSON to the caller.  
 
+This version replaces JUnit and JMockit with Spock as a test suite and replaces Eclipse with IntelliJ as the IDE.
 
 Technologies Used
 =================
 * Java 1.8  
 * Spring Boot 1.3.5  
 * Gradle 2.14  
-* JUnit 4  
-* JMockit 1.24  
+* Spock  
 * MongoDB 3.3  
 * Docker 1.12.0-rc2-beta17  
 * Docker-Compose 1.8.0-rc1  
 * Git 2.9.0  
-* Eclipse Neon  
+* IntelliJ IDEA - Ultimate 2016  
 
 
 Setup
