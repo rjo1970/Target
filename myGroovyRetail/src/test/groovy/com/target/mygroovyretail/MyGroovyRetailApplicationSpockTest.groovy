@@ -23,25 +23,25 @@ import spock.lang.Specification
 @SpringBootTest // new for 1.4
 class MyGroovyRetailApplicationSpockTest extends Specification {
 
-    @Autowired
-    PriceRepository priceRepository
+//    @Autowired
+//    PriceRepository priceRepository
 
-    @Shared MongoClient mongo = new MongoClient("localhost", 27017)
+//    @Shared MongoClient mongo = new MongoClient("localhost", 27017)
 
-    @Ignore
-    def "load database from application startup"() {
-        println "PriceRepository => ${priceRepository}"
-        println "mongo => ${mongo}"
-        given:
-        priceRepository.deleteAll()
-//        MongoDatabase db = mongo.getDatabase("myGroovyRetail")
-
-//        when:
-//        new MyGroovyRetailApplication(priceRepository, "Demo")
-
-//        then:
- //       MongoCollection<Document> table = db.getCollection("price")
- //       table.count() == 5
-    }
+//    @Ignore
+//    def "load database from application startup"() {
+//        println "PriceRepository => ${priceRepository}"
+//        println "mongo => ${mongo}"
+//        given:
+//        priceRepository.deleteAll()
+////        MongoDatabase db = mongo.getDatabase("myGroovyRetail")
+//
+////        when:
+////        new MyGroovyRetailApplication(priceRepository, "Demo")
+//
+////        then:
+// //       MongoCollection<Document> table = db.getCollection("price")
+// //       table.count() == 5
+//    }
 
 }
